@@ -1,0 +1,24 @@
+@-webkit-keyframes fly-1 {
+    from {
+      -webkit-transform: translate(2000px, 500px) rotate(830deg);
+    }
+  }
+  @-moz-keyframes fly-1 {
+    from {
+      -moz-transform: translate(2000px, 500px) rotate(830deg);
+    }
+  }
+  @-o-keyframes fly-1 {
+    from {
+      -o-transform: translate(2000px, 500px) rotate(830deg);
+         transform: translate(2000px, 500px) rotate(830deg);
+    }
+  }
+  @keyframes fly-1 {
+    from {
+      -webkit-transform: translate(2000px, 500px) rotate(830deg);
+         -moz-transform: translate(2000px, 500px) rotate(830deg);
+           -o-transform: translate(2000px, 500px) rotate(830deg);
+              transform: translate(2000px, 500px) rotate(830deg);
+    }
+}
