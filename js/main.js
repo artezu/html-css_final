@@ -15,6 +15,7 @@ function figure(){//Отрисовка фигуры
     ctx.closePath();
     ctx.fill();
 };
+var time=250;//задержка
 function s_right_class(i1,i2,i3,n){
     var index;
     if(i1 == 0){
@@ -87,9 +88,42 @@ function s_left_class(i1,i2,i3,n){
         }
     }
 };
+function radioclick(r_index){
+    var ww, n, i1,i2,i3,is1,is2,is3;
+    ww = $( window ).width();
+    n = $(".ex__item").length;
+    is1 = r_index;
+    if(n != is1+1)
+        is2= is1+1;
+    else
+        is2 = 0;
+    if(n != is2+1)
+        is3= is2 +1;
+    else
+        is3 = 0
+    $(".ex__item").animate({
+        opacity: 0
+    },time/2,"linear",function(){
+        $(".ex__item").removeClass("ex__item_order_1");
+        $(".ex__item").removeClass("ex__item_order_2");
+        $(".ex__item").removeClass("ex__item_order_3");
+        $(".ex__item").css({
+            opacity:0
+        })
+        $(".ex__item:eq(" + is1 + ")").addClass("ex__item_order_1");
+        $(".ex__item:eq(" + is2 + ")").addClass("ex__item_order_2");
+        $(".ex__item:eq(" + is3 + ")").addClass("ex__item_order_3");
+        $(".ex__item").animate({
+            opacity: 1
+        },time/2,"linear");
+    });
+    
+}
 $(function(){
     figure();
-    var time=250;//задержка
+
+    $(".ex__radio-cont li").on("click",function(){radioclick($(".ex__radio-cont li").index($(this)))}
+    );
     $(".ex__list").swipe( {
         swipeStatus:function(event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection)
         {
@@ -114,7 +148,6 @@ $(function(){
                 i1= $("#list_swipe .ex__item").index($(".ex__item_order_1"));
                 i3= $("#list_swipe .ex__item").index($(".ex__item_order_3"));
                 i2= $("#list_swipe .ex__item").index($(".ex__item_order_2"));
-                
                 if(ww > 1198){//для большого экрана
                     if(n > 3){
                         if(direction == "left"){
