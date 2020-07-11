@@ -16,6 +16,14 @@ function figure(){//Отрисовка фигуры
     ctx.fill();
 };
 function s_right_class(i1,i2,i3,n){
+    var index;
+    if(i1 == 0){
+        index = n;
+    }
+    else{
+        index = i1; 
+    }
+    $("#r-" + index).prop('checked', true);
     if(n < 3){
         $(".ex__item_order_1").toggleClass('ex__item_order_1 ex__item_order_n');
         $(".ex__item_order_2").toggleClass('ex__item_order_2 ex__item_order_1');
@@ -44,6 +52,14 @@ function s_right_class(i1,i2,i3,n){
     }
 };
 function s_left_class(i1,i2,i3,n){
+    var index;
+    if(i1+1 == n){
+        index = 1;
+    }
+    else{
+        index = i2 + 1; 
+    }
+    $("#r-" + index).prop('checked', true);
     if(n < 3){
         $(".ex__item_order_1").toggleClass('ex__item_order_1 ex__item_order_n');
         $(".ex__item_order_2").toggleClass('ex__item_order_2 ex__item_order_1');
@@ -103,10 +119,10 @@ $(function(){
                     if(n > 3){
                         if(direction == "left"){
                            
-                            
                             //s_left_class(i1,i2,i3,n);
                         }
                         else if(direction == "right"){
+
                             //s_right_class(i1,i2,i3,n);
                         }
                     }
@@ -200,8 +216,14 @@ $(function(){
                                 $(".ex__item").attr('style', '');});
                         }
                         else if(direction == "right"){
-                            if(i1 == 0){//$(".ex__item:eq("+(n-1)+")")
-                                $(".ex__item:eq("+(n-1)+")").css({
+                            var n1;
+                            if(i1 == 0){
+                                n1 = n-1;
+                            }
+                            else{
+                                n1 = i1-1;
+                            }
+                                $(".ex__item:eq("+(n1)+")").css({
                                     display:"inline-block",
                                     transform:"translate(-590px, 0px)",
                                     opacity:0
@@ -210,32 +232,13 @@ $(function(){
                                     left: "280px",
                                     opacity:0
                                 },time,"linear");
-                                $(".ex__item:eq("+(n-1)+")").animate({
+                                $(".ex__item:eq("+(n1)+")").animate({
                                     left: "280px",
                                     opacity:1
                                 },time,"linear", function(){
                                     s_right_class(i1,i2,i3,n);
                                     $(".ex__item").attr('style', '');
                                 });
-                            }
-                            else{//$(".ex__item:eq("+(i1-1)+")")
-                                $(".ex__item:eq("+(i1-1)+")").css({
-                                    display:"inline-block",
-                                    transform:"translate(-590px, 0px)",
-                                    opacity:0
-                                });
-                                $(".ex__item_order_1").animate({
-                                    left: "280px",
-                                    opacity:0
-                                },time,"linear");
-                                $(".ex__item:eq("+(i1-1)+")").animate({
-                                    left: "280px",
-                                    opacity:1
-                                },time,"linear", function(){
-                                    s_right_class(i1,i2,i3,n);
-                                    $(".ex__item").attr('style', '');
-                                });
-                            }
                         }
                     }
                     else{
@@ -251,7 +254,7 @@ $(function(){
                 },time,"linear");
             }
      },
-     allowPageScroll: "horizontal", 
+     allowPageScroll: "vertical", 
      triggerOnTouchEnd: true,
      threshold:80 // сработает, если пройдено 80 пикселей
     });

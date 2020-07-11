@@ -318,6 +318,7 @@ main{
   font-weight: 500;
   color: #8993ad;
   position: relative;
+  order: 5;
 }
 .ex__item.ex__item_order_1, .ex__item.ex__item_order_2, .ex__item.ex__item_order_3{
   display: inline-block;
