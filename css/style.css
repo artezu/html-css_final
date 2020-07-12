@@ -13,6 +13,7 @@ html, body{
 }
 body{
   background-color: #fbfbfb00;
+  min-width: 300px;
 }
 .container{
   margin: auto;
@@ -569,10 +570,36 @@ main{
 .alt-text{
   display: none!important;
 }
+.night, .menu__close{
+  display: none;
+}
+
 @media (max-width: 1198px){
+
   .container, .what-do .container{
     width: 950px;
   }
+  .menu-on{
+    position: fixed;
+    width: 100%;
+    height: auto;
+    left: 0;
+    top: 0;
+  }
+  .menu-on .night{
+    display: block;
+  }
+  .night{
+    top: 0;
+    left: 0;
+    order: 1000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #00000077;
+    z-index: 10000;
+  }
+
   .btn-menu{
     display: block;
     background-color: #ffffff00;
@@ -588,6 +615,34 @@ main{
   }
   .top__menu{
     display: none;
+    position: fixed;
+    flex-direction: column;
+    width: 200px;
+    height: 100%;
+    z-index: 20000;
+    background-color: #ffffffee;
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+ .menu-on .top__menu{
+    display: flex;
+  }
+  .menu__item{
+    border-bottom: 1px solid #f82370;
+    font-size: 20px;
+    font-weight: 700;
+  }
+.menu__item a{
+    padding: 15px 30px;
+    display: block;
+    margin: 0;
+  }
+  .menu__close{
+    display: inline-block;
+  }
+  .menu__close a{
+    padding: 20px 30px;
   }
   .top__main h2{
     font-size: 54px;
@@ -924,7 +979,7 @@ main{
     min-height: 350px;
   }
   .ex .btn {
-    padding: 25px 76px;
+    padding: 25px 75px;
     margin-top: 47px;
     font-size: 16px;
   }
