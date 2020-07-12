@@ -230,61 +230,92 @@ function menu_off(scroll){
         $("html").attr("style","");
     });
 }
+function menu_off_a(scroll){
+    $(".night").css({
+        opacity: 1,
+        display: "block"
+    });
+    $(".top__menu").css({
+        left: "0px",
+        display: "flex"
+    });
+    $(".top__menu").animate({
+        left:"-500px"
+    },time,"linear");
+    $(".btn-menu").animate({
+        opacity:1
+    },time,"linear");
+    $(".night").animate({
+        opacity:0
+    },time,"linear",function(){
+        $(".night").attr("style","");
+        $(".top__menu").attr("style","");
+    });
+    $("html").attr("style","scroll-behavior: auto;");
+    $("body").removeClass("menu-on");
+    $(window).scrollTop(scroll);
+    $("html").attr("style","");
+}
 $(function(){
     figure();
     
     $(".ex__radio-cont li").on("click",function(){radioclick($(".ex__radio-cont li").index($(this)))});
     $(".ex__arrow.a-left").on("click",function(){leftclick()});
     $(".ex__arrow.a-right").on("click",function(){rightclick()});
-    $(".btn-menu").on("click", function(){
-        scroll =  $(window).scrollTop();
-        menu_on(scroll);
-    });
-    $(".menu__close a").on("click", function(e){
-        menu_off(scroll);
-        e.preventDefault();
-    });
-    $(".night").on("click", function(){
-        menu_off(scroll);
-    });
-    $("header").swipe( {
-        swipeStatus:function(event, phase, direction, distance){
-             menu_swipe(event, phase, direction, distance);
+    if($( window ).width() <= 1198){
+        $(".btn-menu").on("click", function(){
+            scroll =  $(window).scrollTop();
+            menu_on(scroll);
+        });
+        $(".menu__close a").on("click", function(e){
+            menu_off(scroll);
+            e.preventDefault();
+        });
+        $(".menu__item a").on("click",function(e){
+            menu_off_a(scroll); 
+        });
+        $(".night").on("click", function(){
+            menu_off(scroll);
+        });
+        $("header").swipe( {
+            swipeStatus:function(event, phase, direction, distance){
+                menu_swipe(event, phase, direction, distance);
+                },
+            excludedElements:".ex__list",
+            allowPageScroll: "vertical",
+            triggerOnTouchEnd: true, 
+            threshold:100
+        });
+        $("main").swipe( {
+            swipeStatus:function(event, phase, direction, distance){
+                menu_swipe(event, phase, direction, distance);
+                },
+            excludedElements:".ex__list",
+            allowPageScroll: "vertical",
+            triggerOnTouchEnd: true, 
+            threshold:100
+        });
+        $("footer").swipe( {
+            swipeStatus:function(event, phase, direction, distance){
+                menu_swipe(event, phase, direction, distance);
+                },
+            excludedElements:".ex__list",
+            allowPageScroll: "vertical",
+            triggerOnTouchEnd: true, 
+            threshold:100
+        });
+        $(".night").swipe( {
+            swipeStatus:function(event, phase, direction){
+                if (direction == "left")
+                    if (phase=="end"){
+                        menu_off(scroll);
+                    }
             },
-        excludedElements:".ex__list",
-        allowPageScroll: "vertical",
-        triggerOnTouchEnd: true, 
-        threshold:100
-    });
-    $("main").swipe( {
-        swipeStatus:function(event, phase, direction, distance){
-             menu_swipe(event, phase, direction, distance);
-            },
-        excludedElements:".ex__list",
-        allowPageScroll: "vertical",
-        triggerOnTouchEnd: true, 
-        threshold:100
-    });
-    $("footer").swipe( {
-        swipeStatus:function(event, phase, direction, distance){
-             menu_swipe(event, phase, direction, distance);
-            },
-        excludedElements:".ex__list",
-        allowPageScroll: "vertical",
-        triggerOnTouchEnd: true, 
-        threshold:100
-    });
-    $(".night").swipe( {
-        swipeStatus:function(event, phase, direction){
-            if (direction == "left")
-                if (phase=="end"){
-                    menu_off(scroll);
-                }
-        },
-        allowPageScroll: "vertical",
-        triggerOnTouchEnd: true, 
-        threshold: 50
-    });
+            allowPageScroll: "vertical",
+            triggerOnTouchEnd: true, 
+            threshold: 50
+        });
+    }
     $(".ex__list").swipe( {
         swipeStatus:function(event, phase, direction, distance)
         {

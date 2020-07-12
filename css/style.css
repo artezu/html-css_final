@@ -638,6 +638,10 @@ main{
     display: block;
     margin: 0;
   }
+  .menu__item.menu__item_on  a{
+    border-bottom: 0;
+    color:inherit;
+  }
   .menu__close{
     display: inline-block;
   }
