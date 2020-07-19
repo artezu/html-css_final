@@ -11,6 +11,12 @@ html, body{
 .btn,button{
   font-family: inherit;
 }
+input{
+  outline: none;
+}
+input:focus, button:focus{
+  outline: none;
+}
 body{
   background-color: #fbfbfb00;
   min-width: 300px;
@@ -573,7 +579,64 @@ main{
 .night, .menu__close{
   display: none;
 }
-
+.make-call{
+  display: none;
+}
+.modal-on .night,.modal-on .make-call{
+  display: block;
+}
+.make-call__popup {
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	padding: 20px;
+	width: 300px;
+	margin-left: -200px;	
+	background: #fbfbfb;
+	border: 1px solid #f82370;
+	border-radius: 4px; 
+	z-index: 99999;
+  opacity: 1;
+}
+.popup__close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.make-call__popup input,
+.make-call__popup label{
+  display: block;
+  font-size: 20px;
+  margin: 20px auto;
+}
+label, .popup h3{
+  text-align: center;
+  font-size: 25px;
+}
+.make-call__popup input[type="text"], .make-call__popup input[type="tel"]{
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+  border-radius: 10px;
+}
+.make-call__popup input:focus{
+  box-shadow: 0 0 0 2px #f82370;
+  outline: none;
+  border-color:#fbfbfb;
+}
+.modal-on{
+  position: fixed;
+  width: 100%;
+  height: auto;
+  left: 0;
+  top: 0;
+}
+.after{
+  display: none;
+  text-align: center;
+}
+.after > *{
+  margin-bottom: 20px;
+}
 @media (max-width: 1198px){
 
   .container, .what-do .container{
@@ -914,7 +977,7 @@ main{
     font-size: 18px;
   }
   .btn-all {
-    padding: 27px 82px;
+    padding: 27px 80px;
   }
   .what-do{
     padding-top: 140px;

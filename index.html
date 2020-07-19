@@ -6,6 +6,7 @@
     <meta name="yandex-verification" content="c3fd7bb89d3f23e4" />
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/jquery.touchSwipe.min.js"></script>
+    <script src="js/jquery.maskedinput.js"></script>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/animation.css">
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +34,7 @@
             </ul>
             <div class="top__tel">
                 <a class="top__phone-num" href="tel:+74999955577">+7 (499) 995-55-77</a>
-                <button class="btn btn-border" type="button">Заказать звонок<span class="alt-text fa fa-phone"></span></button>
+                <button class="btn btn-border btn-call" type="button">Заказать звонок<span class="alt-text fa fa-phone"></span></button>
             </div>
         </nav>
         <div class="top__main">
@@ -41,7 +42,7 @@
                 <div class="top__h-container">
                     <h2>Дмитрий Алексеев</h2>
                     <h1>Frontend-разработчик и веб-верстальщик</h1>
-                    <button class="btn btn-all" type="button">Узнать больше</button>
+                    <button class="btn btn-all btn-call" type="button">Узнать больше</button>
                 </div>
                 <div class="top__background-container">
                     <span class="top__photo"></span>
@@ -80,7 +81,7 @@
                         <p>Исправление и доработка существующей верстки</p>
                     </li>
                 </ul>
-                <button class="btn btn-all">Узнать стоймость</button>
+                <button class="btn btn-all btn-call">Узнать стоймость</button>
             </article>
         </div>
         <article class="ex container" id="ex">
@@ -123,7 +124,7 @@
                     <label for="r-4"></label>
                 </li>
             </ul>
-            <button class="btn btn-all">Заказать проект</button>
+            <button class="btn btn-all btn-call">Заказать проект</button>
         </article>
         <div class="sale" id="sale">
             <article class="container">
@@ -143,9 +144,9 @@
         <div class="footer container">
             <nav>
                 <ul class="footer__menu">
-                    <li class="footer__item"><a href="#">Услуги</a></li>
-                    <li class="footer__item"><a href="#">Портфолио</a></li>
-                    <li class="footer__item"><a href="#">Стоймость</a></li>
+                    <li class="footer__item"><a href="#what-do">Услуги</a></li>
+                    <li class="footer__item"><a href="#ex">Портфолио</a></li>
+                    <li class="footer__item"><a href="#sale">Стоймость</a></li>
                 </ul>
             </nav>
             <div class="contact">
@@ -153,7 +154,7 @@
                 <p class="contact__email"><a href="mailto:dmitriy@alecseev.com">dmitriy@alecseev.com</a></p>
             </div>
             <div class="buttons-cont">
-                <button class="btn btn-border btn-all-xs">Заказать звонок</button>
+                <button class="btn btn-border btn-all-xs btn-call">Заказать звонок</button>
                 <ul class="buttons-cont__snet">
                     <li class="buttons-cont__vk"><a href="https://vk.com/#"></a></li>
                     <li class="buttons-cont__fb"><a href="https://fb.com/#"></a></li>
@@ -164,5 +165,22 @@
         </div>
         <div class="footer__bottom"><p>© Дмитрий Алексеев, 2016 – 2018</p></div>
     </footer>
+    <div class="make-call">
+        <div class="make-call__popup popup">
+            <a class="popup__close" href="#">Закрыть</a>
+            <h3>Заказать обратный звонок</h3>
+            <form action="#" method="post" id="make-call">
+                <label for="popup__name">Как к вам обращаться?</label>
+                <input type="text" name="name" id="popup__name" placeholder="Имя Отчество">
+                <label for="popup__number">Введите ваш номер телефона(без +7)</label>
+                <input type="tel" name="number" id="popup__number" placeholder="+7 (___) __-__-__">
+                <input type="submit" value="Заказать" class="btn">
+            </form>
+            <div class="after">
+                <button type="button" class="btn after__close">Хорошо</button>
+                <button type="button" class="btn after__restart">Не тот номер</button>
+            </div>
+        </div>		
+    </div>
 </body>
 </html>

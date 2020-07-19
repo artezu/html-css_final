@@ -8,7 +8,7 @@ function figure(){//Отрисовка фигуры
     grad.addColorStop(0, '#ff2f96');
     ctx.fillStyle = grad;
     ctx.beginPath();
-    ctx.moveTo(250, 755);
+    ctx.moveTo(400, 755);
     ctx.bezierCurveTo(-180, 680, 0, 400,250, 100);
     ctx.bezierCurveTo(520, -110, 1000, 20,900, 490);
     ctx.bezierCurveTo(800, 750, 600, 760,250, 755);
@@ -256,9 +256,84 @@ function menu_off_a(scroll){
     $(window).scrollTop(scroll);
     $("html").attr("style","");
 }
+function modal_on(scroll){
+    $("body").css({
+        top:"-"+ scroll+"px",
+    });
+    $(".night").css({
+        opacity: 0
+    });
+
+    $(".make-call").css({
+        opacity: 0
+    });
+    $("body").addClass("modal-on");
+    $(".make-call").animate({
+        opacity:1
+    },time,"linear");
+    $(".night").animate({
+        opacity:1
+    },time,"linear");
+}
+function modal_off(scroll){
+    $(".make-call").animate({
+        opacity:0
+    },time,"linear");
+    $(".night").animate({
+        opacity:0
+    },time,"linear",function(){
+        $("html").attr("style","scroll-behavior: auto;");
+        $("body").removeClass("modal-on");
+        $(window).scrollTop(scroll);
+        $("html").attr("style","");
+    });
+}
 $(function(){
     figure();
-    
+    $("#popup__number").mask("+7 (999) 999-99-99");
+    $(".btn-call").on("click",function(){
+        scroll = $(window).scrollTop();
+        modal_on(scroll);
+    });
+    $(".night").on("click", function(){
+        if($("body").hasClass("modal-on"))
+            modal_off(scroll);
+        else  menu_off(scroll);
+    });
+    $("#make-call").on("submit", function(e){
+        e.preventDefault();
+        console.log($(this).serialize());
+        $.ajax({
+            url: 'make-call.php',
+            method: 'post',
+            dataType: 'html',
+            data: $(this).serialize(),
+            success: function(data){
+                $(".make-call__popup h3").html('Вы заказали обратный звонок на номер: '+data);
+                $("#make-call").css({
+                    display: "none"
+                });
+                $('.after').css({
+                    display: 'inline-block'
+                });
+            }
+        });
+    });
+    $(".popup__close").on("click", function(e){
+        e.preventDefault();
+        modal_off(scroll);
+    });
+    $(".after__close").on("click", function(e){
+        modal_off(scroll);
+    });
+    $(".after__restart").on("click", function(e){
+        $("#make-call").css({
+            display: "block"
+        });
+        $('.after').css({
+            display: "none"
+        });
+    });
     $(".ex__radio-cont li").on("click",function(){radioclick($(".ex__radio-cont li").index($(this)))});
     $(".ex__arrow.a-left").on("click",function(){leftclick()});
     $(".ex__arrow.a-right").on("click",function(){rightclick()});
@@ -273,9 +348,6 @@ $(function(){
         });
         $(".menu__item a").on("click",function(e){
             menu_off_a(scroll); 
-        });
-        $(".night").on("click", function(){
-            menu_off(scroll);
         });
         $("header").swipe( {
             swipeStatus:function(event, phase, direction, distance){
