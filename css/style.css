@@ -579,13 +579,14 @@ main{
 .night, .menu__close{
   display: none;
 }
-.make-call{
+.make-call, .detail{
   display: none;
 }
-.modal-on .night,.modal-on .make-call{
+.make-call-on .night,.make-call-on .make-call,
+.detail-on .night,.detail-on .detail{
   display: block;
 }
-.make-call__popup {
+.popup {
 	position: fixed;
 	top: 20%;
 	left: 50%;
@@ -603,8 +604,8 @@ main{
 	top: 10px;
 	right: 10px;
 }
-.make-call__popup input,
-.make-call__popup label{
+.popup input,
+.popup label{
   display: block;
   font-size: 20px;
   margin: 20px auto;
@@ -613,29 +614,39 @@ label, .popup h3{
   text-align: center;
   font-size: 25px;
 }
-.make-call__popup input[type="text"], .make-call__popup input[type="tel"]{
+.popup input[type="text"], .popup input[type="tel"], .popup input[type="email"]{
   padding: 10px;
   border: 1px solid #aaaaaa;
   border-radius: 10px;
 }
-.make-call__popup input:focus{
+.popup input:focus{
   box-shadow: 0 0 0 2px #f82370;
   outline: none;
   border-color:#fbfbfb;
 }
-.modal-on{
+.make-call-on, .detail-on{
   position: fixed;
   width: 100%;
   height: auto;
   left: 0;
   top: 0;
 }
-.after{
+.after,.detail__after{
   display: none;
   text-align: center;
 }
-.after > *{
+.after > *,.detail__after > *{
   margin-bottom: 20px;
+}
+.night{
+  top: 0;
+  left: 0;
+  order: 1000;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #00000077;
+  z-index: 10000;
 }
 @media (max-width: 1198px){
 
@@ -651,16 +662,6 @@ label, .popup h3{
   }
   .menu-on .night{
     display: block;
-  }
-  .night{
-    top: 0;
-    left: 0;
-    order: 1000;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background-color: #00000077;
-    z-index: 10000;
   }
 
   .btn-menu{
@@ -980,11 +981,11 @@ label, .popup h3{
     padding: 27px 80px;
   }
   .what-do{
-    padding-top: 140px;
+    padding-top: 185px;
   }
   .what-do h2 {
     margin-right: 0px;
-    padding: 85px 0 40px;
+    padding: 40px 0;
   }
   .what-do__jobs{
     width: auto;

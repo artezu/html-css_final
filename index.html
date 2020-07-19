@@ -42,7 +42,7 @@
                 <div class="top__h-container">
                     <h2>Дмитрий Алексеев</h2>
                     <h1>Frontend-разработчик и веб-верстальщик</h1>
-                    <button class="btn btn-all btn-call" type="button">Узнать больше</button>
+                    <button class="btn btn-all btn-detail" type="button">Узнать больше</button>
                 </div>
                 <div class="top__background-container">
                     <span class="top__photo"></span>
@@ -81,13 +81,13 @@
                         <p>Исправление и доработка существующей верстки</p>
                     </li>
                 </ul>
-                <button class="btn btn-all btn-call">Узнать стоймость</button>
+                <button class="btn btn-all btn-detail">Узнать стоймость</button>
             </article>
         </div>
         <article class="ex container" id="ex">
             <h2>Примеры моих работ</h2>
-            <button class="ex__arrow a-left"></button>
-            <button class="ex__arrow a-right"></button>
+            <button class="ex__arrow a-left" aria-label="Предыдущий"></button>
+            <button class="ex__arrow a-right" aria-label="Следующий"></button>
             <ul class="ex__list e-1nd" id="list_swipe">
                 <li class="ex__item ex__item_order_1">
                     <span class="ex__img ex__img-1"></span>
@@ -124,7 +124,7 @@
                     <label for="r-4"></label>
                 </li>
             </ul>
-            <button class="btn btn-all btn-call">Заказать проект</button>
+            <button class="btn btn-all btn-detail">Заказать проект</button>
         </article>
         <div class="sale" id="sale">
             <article class="container">
@@ -156,10 +156,10 @@
             <div class="buttons-cont">
                 <button class="btn btn-border btn-all-xs btn-call">Заказать звонок</button>
                 <ul class="buttons-cont__snet">
-                    <li class="buttons-cont__vk"><a href="https://vk.com/#"></a></li>
-                    <li class="buttons-cont__fb"><a href="https://fb.com/#"></a></li>
-                    <li class="buttons-cont__tw"><a href="https://twitter.com/#"></a></li>
-                    <li class="buttons-cont__inst"><a href="https://instagram.com/#"></a></li>
+                    <li class="buttons-cont__vk"><a href="https://vk.com/#" aria-label="Вконтакте"></a></li>
+                    <li class="buttons-cont__fb"><a href="https://fb.com/#"  aria-label="Facebook"></a></li>
+                    <li class="buttons-cont__tw"><a href="https://twitter.com/#" aria-label="Twitter"></a></li>
+                    <li class="buttons-cont__inst"><a href="https://instagram.com/#"  aria-label="Instagram"></a></li>
                 </ul>
             </div>
         </div>
@@ -167,18 +167,36 @@
     </footer>
     <div class="make-call">
         <div class="make-call__popup popup">
-            <a class="popup__close" href="#">Закрыть</a>
+            <a class="popup__close make-call__close" href="#">Закрыть</a>
             <h3>Заказать обратный звонок</h3>
             <form action="#" method="post" id="make-call">
-                <label for="popup__name">Как к вам обращаться?</label>
-                <input type="text" name="name" id="popup__name" placeholder="Имя Отчество">
-                <label for="popup__number">Введите ваш номер телефона(без +7)</label>
-                <input type="tel" name="number" id="popup__number" placeholder="+7 (___) __-__-__">
+                <label for="make-call__name">Как к вам обращаться?</label>
+                <input type="text" name="name" id="make-call__name" placeholder="Имя Отчество" required>
+                <label for="make-call__number">Введите ваш номер телефона(без +7)</label>
+                <input name="number" class="popup__number" id="make-call__number" placeholder="+7 (___) __-__-__" autocomplete="off" type = "tel" required>
                 <input type="submit" value="Заказать" class="btn">
             </form>
             <div class="after">
-                <button type="button" class="btn after__close">Хорошо</button>
+                <button type="button" class="btn make-call__close">Хорошо</button>
                 <button type="button" class="btn after__restart">Не тот номер</button>
+            </div>
+        </div>		
+    </div>
+    <div class="detail">
+        <div class="detail__popup popup">
+            <a class="popup__close detail__close" href="#">Закрыть</a>
+            <h3>Заказать обратный звонок</h3>
+            <form action="#" method="post" id="detail">
+                <label for="detail__name">Как к вам обращаться?</label>
+                <input type="text" name="name" id="detail__name" placeholder="Имя Отчество" required>
+                <label for="detail__email">Введите ваш email</label>
+                <input name="email" id="detail__email" placeholder="name@example.ru" type = "email" required>
+                <label for="detail__number">Введите ваш номер телефона(без +7)</label>
+                <input name="number" class="popup__number" id="detail__number" placeholder="+7 (___) __-__-__" autocomplete="off" type = "tel" required>
+                <input type="submit" value="Заказать" class="btn">
+            </form>
+            <div class="detail__after">
+                <button type="button" class="btn detail__close">Хорошо</button>
             </div>
         </div>		
     </div>

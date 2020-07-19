@@ -256,7 +256,7 @@ function menu_off_a(scroll){
     $(window).scrollTop(scroll);
     $("html").attr("style","");
 }
-function modal_on(scroll){
+function make_call_on(scroll){
     $("body").css({
         top:"-"+ scroll+"px",
     });
@@ -267,7 +267,7 @@ function modal_on(scroll){
     $(".make-call").css({
         opacity: 0
     });
-    $("body").addClass("modal-on");
+    $("body").addClass("make-call-on");
     $(".make-call").animate({
         opacity:1
     },time,"linear");
@@ -275,7 +275,7 @@ function modal_on(scroll){
         opacity:1
     },time,"linear");
 }
-function modal_off(scroll){
+function make_call_off(scroll){
     $(".make-call").animate({
         opacity:0
     },time,"linear");
@@ -283,22 +283,74 @@ function modal_off(scroll){
         opacity:0
     },time,"linear",function(){
         $("html").attr("style","scroll-behavior: auto;");
-        $("body").removeClass("modal-on");
+        $("body").removeClass("make-call-on");
         $(window).scrollTop(scroll);
         $("html").attr("style","");
     });
 }
+function detail_on(scroll){
+    $("body").css({
+        top:"-"+ scroll+"px",
+    });
+    $(".night").css({
+        opacity: 0
+    });
+
+    $(".detail").css({
+        opacity: 0
+    });
+    $("body").addClass("detail-on");
+    $(".detail").animate({
+        opacity:1
+    },time,"linear");
+    $(".night").animate({
+        opacity:1
+    },time,"linear");
+}
+function detail_off(scroll){
+    $(".detail").animate({
+        opacity:0
+    },time,"linear");
+    $(".night").animate({
+        opacity:0
+    },time,"linear",function(){
+        $("html").attr("style","scroll-behavior: auto;");
+        $("body").removeClass("detail-on");
+        $(window).scrollTop(scroll);
+        $("html").attr("style","");
+    });
+}
+$.fn.setCursorPosition = function(pos) {
+    if ($(this).get(0).setSelectionRange) {
+      $(this).get(0).setSelectionRange(pos, pos);
+    } else if ($(this).get(0).createTextRange) {
+      var range = $(this).get(0).createTextRange();
+      range.collapse(true);
+      range.moveEnd('character', pos);
+      range.moveStart('character', pos);
+      range.select();
+    }
+};
 $(function(){
     figure();
-    $("#popup__number").mask("+7 (999) 999-99-99");
+    $(".popup__number").click(function(){
+        $(this).setCursorPosition(4);
+    });
+    $(".popup__number").mask("+7 (999) 999-99-99",{autoclear:true });
     $(".btn-call").on("click",function(){
         scroll = $(window).scrollTop();
-        modal_on(scroll);
+        make_call_on(scroll);
+    });
+    $(".btn-detail").on("click",function(){
+        scroll = $(window).scrollTop();
+        detail_on(scroll);
     });
     $(".night").on("click", function(){
-        if($("body").hasClass("modal-on"))
-            modal_off(scroll);
-        else  menu_off(scroll);
+        if($("body").hasClass("make-call-on"))
+            make_call_off(scroll);
+        else if($("body").hasClass("detail-on"))
+            detail_off(scroll);
+        else menu_off(scroll);
     });
     $("#make-call").on("submit", function(e){
         e.preventDefault();
@@ -319,12 +371,9 @@ $(function(){
             }
         });
     });
-    $(".popup__close").on("click", function(e){
+    $(".make-call__close").on("click", function(e){
         e.preventDefault();
-        modal_off(scroll);
-    });
-    $(".after__close").on("click", function(e){
-        modal_off(scroll);
+        make_call_off(scroll);
     });
     $(".after__restart").on("click", function(e){
         $("#make-call").css({
@@ -333,6 +382,29 @@ $(function(){
         $('.after').css({
             display: "none"
         });
+    });
+    $("#detail").on("submit", function(e){
+        e.preventDefault();
+        console.log($(this).serialize());
+        $.ajax({
+            url: 'detail.php',
+            method: 'post',
+            dataType: 'html',
+            data: $(this).serialize(),
+            success: function(data){
+                $(".detail__popup h3").html('Вы успешно отправили свои контактные данные');
+                $("#detail").css({
+                    display: "none"
+                });
+                $('.detail__after').css({
+                    display: 'inline-block'
+                });
+            }
+        });
+    });
+    $(".detail__close").on("click", function(e){
+        e.preventDefault();
+        detail_off(scroll);
     });
     $(".ex__radio-cont li").on("click",function(){radioclick($(".ex__radio-cont li").index($(this)))});
     $(".ex__arrow.a-left").on("click",function(){leftclick()});
