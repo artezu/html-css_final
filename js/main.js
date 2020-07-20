@@ -366,7 +366,7 @@ $(function(){
                     display: "none"
                 });
                 $('.after').css({
-                    display: 'inline-block'
+                    display: 'block'
                 });
             }
         });
@@ -397,7 +397,7 @@ $(function(){
                     display: "none"
                 });
                 $('.detail__after').css({
-                    display: 'inline-block'
+                    display: 'block'
                 });
             }
         });
