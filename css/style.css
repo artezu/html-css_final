@@ -326,6 +326,7 @@ main{
   color: #8993ad;
   position: relative;
   order: 5;
+  margin: 0 0.5em;
 }
 .ex__item.ex__item_order_1, .ex__item.ex__item_order_2, .ex__item.ex__item_order_3{
   display: inline-block;
@@ -356,10 +357,23 @@ main{
   width: 370px;
   height: 290px;
   background-repeat: no-repeat;
+  background-position: center;
   -webkit-background-size: cover;
        -o-background-size: cover;
           background-size: cover;
   background-image: url(../img/exam.png);
+}
+.ex__img-1{
+  background-image: url(../img/ex1.png);
+}
+.ex__img-2{
+  background-image: url(../img/ex2.png);
+}
+.ex__img-3{
+  background-image: url(../img/ex3.png);
+}
+.ex__img-4{
+  background-image: url(../img/ex4.png);
 }
 .ex__arrow{
   display: inline-block;
@@ -782,9 +796,12 @@ label, .popup h3{
          -o-background-size: cover;
             background-size: cover;
   }
+  .ex__item{
+    margin: 0 1em;
+  }
   .ex__item p{
     font-size: 25px;
-    margin: 1em;
+    margin: 1em 0;
   }
   .ex__radio-cont{
     display: -webkit-box;
@@ -1018,10 +1035,13 @@ label, .popup h3{
     width: 280px;
     height: 265px;
   }
+  .ex__item{
+    margin: 0;
+  }
   .ex__item p{
     font-size: 16px;
     line-height: 24px;
-    margin: 1em 0.6em;
+    margin: 1em 0em;
   }
   .ex__item.ex__item_order_2{
     display: none;
